@@ -1,0 +1,31 @@
+@import 'defaults';
+
+body {
+
+  background-color: black;
+  border: 5px white solid;
+  height: 100%;
+  #intro {
+    font-family: Arial;
+    font-size: 3vh;
+    color: white;
+    height: 100%;
+    width: 50%;
+    margin-left: 10%;
+    margin-top: 10%;
+    padding: 2%;
+    border: 5px white solid;
+  }
+  #voice {
+    font-family: "Anonymous Pro";
+    font-size: 2vh;
+    color: white;
+    height: 100%;
+    width: 50%;
+    margin-left: 20%;
+    margin-top: 5%;
+    padding: 2%;
+    border: 5px white solid;
+  }
+
+}
