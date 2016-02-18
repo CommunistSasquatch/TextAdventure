@@ -7,13 +7,10 @@
 
 "use strict";
 
-import { ClickHandler } from 'ClickHandler';
+import  ClickHandler  from './clickHandler';
 
 window.onload = function() {
-
     let clickHandler = new ClickHandler();
-    //let pathContent = new FileReader.loadData("../data/scene-0.csv", "");
 
-    clickHandler.init("submit");
 
 }
