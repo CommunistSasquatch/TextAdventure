@@ -9,14 +9,13 @@
 
 export default class ClickHandler {
     constructor() {
+        
+    }
+
+    printReply() {
 
     }
 
-    handleClick() {
-        document.getElementById("reply1").addEventListener("click", function() {
-            console.log("YSYAAY");
-        });
-    }
 
 }
 
