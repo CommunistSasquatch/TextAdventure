@@ -27,16 +27,16 @@ table {
 body {
   background-color: black;
   border: 5px white solid;
-  height: 75%;
+  height: 50%;
   width: 100.1%; }
   body #background {
     position: absolute;
     z-index: -1;
-    height: 101%;
+    height: 75%;
     width: 100%; }
     body #background img {
       z-index: -1;
-      height: 101%;
+      height: 150%;
       width: 101%; }
   body #title {
     background-color: black;

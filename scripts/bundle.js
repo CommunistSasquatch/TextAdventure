@@ -60,7 +60,9 @@
 
 	class main {
 	    constructor() {
-	        console.log("ghel;lo qwowreld");
+	        document.getElementById("reply1").addEventListener("click", function () {
+	            window.alert("meemes");
+	        });
 	        ;
 	    }
 	}
