@@ -99,17 +99,23 @@
 	var ChoiceHandler = function () {
 	    function ChoiceHandler() {
 	        _classCallCheck(this, ChoiceHandler);
-
-	        var reply1 = document.getElementById("reply1").addEventListener("click", function () {
-	            var choice = true;
-	            ChoiceHandler.changeReply();
-	        });
-	        var reply2 = document.getElementById("reply2").addEventListener("click", function () {
-	            window.alert("World");
-	        });
 	    }
 
-	    _createClass(ChoiceHandler, null, [{
+	    _createClass(ChoiceHandler, [{
+	        key: "getReply",
+	        value: function getReply() {
+	            var choiceHandler = new ChoiceHandler();
+
+	            var reply1 = document.getElementById("reply1").addEventListener("click", function () {
+	                var choice = true;
+	                ChoiceHandler.changeReply();
+	            });
+	            var reply2 = document.getElementById("reply2").addEventListener("click", function () {
+	                window.alert("World");
+	            });
+	            choiceHandler.changeReply();
+	        }
+	    }, {
 	        key: "changeReply",
 	        value: function changeReply(choice) {
 	            if (this.choice == true) {

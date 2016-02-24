@@ -11,6 +11,12 @@
 
 export default class ChoiceHandler {
     constructor() {
+
+    }
+
+    getReply() {
+        let choiceHandler = new ChoiceHandler();
+
         let reply1 = document.getElementById("reply1").addEventListener("click", function(){
             let choice = true;
             ChoiceHandler.changeReply()
@@ -18,8 +24,10 @@ export default class ChoiceHandler {
         let reply2 = document.getElementById("reply2").addEventListener("click", function() {
             window.alert("World")
         });
+        choiceHandler.changeReply()
     }
-    static changeReply(choice) {
+
+    changeReply(choice) {
         if (this.choice == true){
             window.alert ("hello");
         }
