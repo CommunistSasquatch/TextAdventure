@@ -8,21 +8,17 @@
         });
  */
 
-//import ClickHandler from './ClickHandler.es6';
+import ChoiceHandler from './ChoiceHandler.js';
 
 "use strict";
 
 class main {
-    constructor() {
-        document.getElementById("reply1").addEventListener("click", function () {
-            window.alert("meemes");
-        });
-        ;
-    }
+    constructor() {}
 }
 
 window.onload = function () {
     new main();
+    new ChoiceHandler();
 };
 
 //# sourceMappingURL=main-compiled.js.map

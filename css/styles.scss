@@ -1,19 +1,22 @@
 @import 'defaults';
 
 body {
+  height: 110%;
+  width: 100%;
   background-color: black;
-  border: 5px white solid;
-  height: 50%;
-  width: 100.1%;
+  border: 1px black dotted;
   #background {
-    position: absolute;
+    position: fixed;
     z-index: -1;
-    height: 75%;
+    min-height: 100%;
+    height: auto;
     width: 100%;
     img {
       z-index: -1;
-      height: 150%;
-      width: 101%;
+      min-height: 100%;
+      min-width: 100%;
+      height: auto;
+      width: 100%;
     }
   }
   #title {
@@ -26,45 +29,43 @@ body {
     font-size: 4vh;
     width: 50%;
     margin-left: 20%;
-    margin-top: 10%;
+    margin-top: 5%;
   }
   #intro {
     background-color: black;
     font-family: Arial;
     font-size: 3vh;
     color: white;
-    height: 100%;
-    width: 50%;
+    width: 25%;
     margin-left: 10%;
-    margin-top: 10%;
+    margin-top: 2%;
     padding: 2%;
     border: 5px white solid;
   }
-  #voice {
+  #voice1 {
     background-color: black;
     font-family: "Anonymous Pro";
     font-size: 3vh;
     color: white;
     height: 100%;
-    width: 75%;
-    margin-left: 10%;
-    margin-top: 5%;
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 2%;
     padding: 2%;
     border: 5px white solid;
   }
   #reply1 {
     font-size: 2.5vh;
     height: 100%;
-    width: 50%;
-    margin-left: 25%;
-    margin-top: 5%;
+    width: 25%;
+    margin-left: 40%;
+    margin-top: 2%;
   }
   #reply2 {
     font-size: 2.5vh;
     height: 100%;
-    width: 50%;
-    margin-left: 25%;
-    margin-top: 5%;
-    margin-bottom: 31%;
+    width: 25%;
+    margin-left: 40%;
+    margin-top: 2%;
   }
 }
