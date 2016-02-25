@@ -3,7 +3,6 @@
  VERSION: 1.0
  CREATED: 2-12-16
  ASSIGNMENT: Text Adventure
- document.getElementById("voice1").style.visibility = "hidden";
  document.getElementbyId ()
  */
 
@@ -29,18 +28,22 @@ var ChoiceHandler = function () {
 
             var reply1 = document.getElementById("reply1").addEventListener("click", function () {
                 var choice = true;
-                ChoiceHandler.changeReply();
+                choiceHandler.changeReply(choice);
             });
             var reply2 = document.getElementById("reply2").addEventListener("click", function () {
-                window.alert("World");
+                var choice = false;
+                choiceHandler.changeReply(choice);
             });
             choiceHandler.changeReply();
         }
     }, {
         key: "changeReply",
         value: function changeReply(choice) {
-            if (this.choice == true) {
-                window.alert("hello");
+            if (choice == true) {
+                document.getElementById("voice1").style.visibility = "hidden";
+                window.alert("silence");
+            } else if (choice == false) {
+                window.alert("idk what u doin her bb");
             }
         }
     }]);

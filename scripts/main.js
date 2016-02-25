@@ -24,5 +24,5 @@ class main {
 
 window.onload = function() {
     new main();
-    new ChoiceHandler();
+    new ChoiceHandler().getReply();
 };

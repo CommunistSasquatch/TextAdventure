@@ -3,7 +3,6 @@
  VERSION: 1.0
  CREATED: 2-12-16
  ASSIGNMENT: Text Adventure
- document.getElementById("voice1").style.visibility = "hidden";
  document.getElementbyId ()
  */
 
@@ -19,17 +18,21 @@ export default class ChoiceHandler {
 
         let reply1 = document.getElementById("reply1").addEventListener("click", function(){
             let choice = true;
-            ChoiceHandler.changeReply()
+            choiceHandler.changeReply(choice)
         });
         let reply2 = document.getElementById("reply2").addEventListener("click", function() {
-            window.alert("World")
+            let choice = false;
+            choiceHandler.changeReply(choice)
         });
         choiceHandler.changeReply()
     }
 
     changeReply(choice) {
-        if (this.choice == true){
-            window.alert ("hello");
+        if (choice == true){
+            document.getElementById("voice1").style.visibility = "hidden";
+            window.alert ("silence");
+        } else if (choice == false){
+            window.alert ("idk what u doin her bb");
         }
 
     }
