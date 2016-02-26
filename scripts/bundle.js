@@ -75,6 +75,61 @@
 
 /***/ },
 /* 1 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 AUTHOR: Joe Barbercheck
+	 VERSION: 1.0
+	 CREATED: 2-12-16
+	 ASSIGNMENT: Text Adventure
+	 document.getElementbyId ()
+	 */
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _SceneChanger = __webpack_require__(2);
+
+	var _SceneChanger2 = _interopRequireDefault(_SceneChanger);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var ChoiceHandler = function () {
+	    function ChoiceHandler() {
+	        _classCallCheck(this, ChoiceHandler);
+	    }
+
+	    _createClass(ChoiceHandler, [{
+	        key: "getReply",
+	        value: function getReply() {
+	            var sceneChanger = new _SceneChanger2.default();
+	            var choiceHandler = new ChoiceHandler();
+
+	            var reply1 = document.getElementById("reply1").addEventListener("click", function () {
+	                var choice = true;
+	                sceneChanger.pullScene1Data(choice);
+	            });
+	            var reply2 = document.getElementById("reply2").addEventListener("click", function () {
+	                var choice = false;
+	                sceneChanger.pullScene1Data(choice);
+	            });
+	        }
+	    }]);
+
+	    return ChoiceHandler;
+	}();
+
+	exports.default = ChoiceHandler;
+
+/***/ },
+/* 2 */
 /***/ function(module, exports) {
 
 	/**
@@ -95,42 +150,33 @@
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var ChoiceHandler = function () {
-	    function ChoiceHandler() {
-	        _classCallCheck(this, ChoiceHandler);
+	var SceneChanger = function () {
+	    function SceneChanger() {
+	        _classCallCheck(this, SceneChanger);
+
+	        SceneLoader.loadData("data/ChoiceRemainSilent.csv", sceneChanger.createScene);
 	    }
 
-	    _createClass(ChoiceHandler, [{
-	        key: "getReply",
-	        value: function getReply() {
-	            var choiceHandler = new ChoiceHandler();
-
-	            var reply1 = document.getElementById("reply1").addEventListener("click", function () {
-	                var choice = true;
-	                choiceHandler.changeReply(choice);
-	            });
-	            var reply2 = document.getElementById("reply2").addEventListener("click", function () {
-	                var choice = false;
-	                choiceHandler.changeReply(choice);
-	            });
-	            choiceHandler.changeReply();
+	    _createClass(SceneChanger, [{
+	        key: "createScene",
+	        value: function createScene() {
+	            var sceneChanger = new SceneChanger();
 	        }
 	    }, {
-	        key: "changeReply",
-	        value: function changeReply(choice) {
+	        key: "pullScene1Data",
+	        value: function pullScene1Data(choice) {
 	            if (choice == true) {
-	                document.getElementById("voice1").style.visibility = "hidden";
 	                window.alert("silence");
 	            } else if (choice == false) {
-	                window.alert("idk what u doin her bb");
+	                window.alert("idk what you doin her bb");
 	            }
 	        }
 	    }]);
 
-	    return ChoiceHandler;
+	    return SceneChanger;
 	}();
 
-	exports.default = ChoiceHandler;
+	exports.default = SceneChanger;
 
 /***/ }
 /******/ ]);

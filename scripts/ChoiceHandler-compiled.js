@@ -14,6 +14,12 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _SceneChanger = require("./SceneChanger.js");
+
+var _SceneChanger2 = _interopRequireDefault(_SceneChanger);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var ChoiceHandler = function () {
@@ -24,27 +30,17 @@ var ChoiceHandler = function () {
     _createClass(ChoiceHandler, [{
         key: "getReply",
         value: function getReply() {
+            var sceneChanger = new _SceneChanger2.default();
             var choiceHandler = new ChoiceHandler();
 
             var reply1 = document.getElementById("reply1").addEventListener("click", function () {
                 var choice = true;
-                choiceHandler.changeReply(choice);
+                sceneChanger.pullScene1Data(choice);
             });
             var reply2 = document.getElementById("reply2").addEventListener("click", function () {
                 var choice = false;
-                choiceHandler.changeReply(choice);
+                sceneChanger.pullScene1Data(choice);
             });
-            choiceHandler.changeReply();
-        }
-    }, {
-        key: "changeReply",
-        value: function changeReply(choice) {
-            if (choice == true) {
-                document.getElementById("voice1").style.visibility = "hidden";
-                window.alert("silence");
-            } else if (choice == false) {
-                window.alert("idk what u doin her bb");
-            }
         }
     }]);
 

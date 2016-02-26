@@ -8,34 +8,27 @@
 
 "use strict";
 
+import SceneChanger from './SceneChanger.js';
+
 export default class ChoiceHandler {
     constructor() {
-
     }
 
     getReply() {
+        let sceneChanger = new SceneChanger();
         let choiceHandler = new ChoiceHandler();
 
         let reply1 = document.getElementById("reply1").addEventListener("click", function(){
             let choice = true;
-            choiceHandler.changeReply(choice)
+            sceneChanger.pullScene1Data(choice)
         });
         let reply2 = document.getElementById("reply2").addEventListener("click", function() {
             let choice = false;
-            choiceHandler.changeReply(choice)
+            sceneChanger.pullScene1Data(choice)
         });
-        choiceHandler.changeReply()
     }
 
-    changeReply(choice) {
-        if (choice == true){
-            document.getElementById("voice1").style.visibility = "hidden";
-            window.alert ("silence");
-        } else if (choice == false){
-            window.alert ("idk what u doin her bb");
-        }
 
-    }
 
 
 }
