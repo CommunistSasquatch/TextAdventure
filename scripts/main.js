@@ -3,15 +3,12 @@
  VERSION: 1.0
  CREATED: 2-12-16
  ASSIGNMENT: Text Adventure
- document.getElementById("reply1").addEventListener("click", function() {
-            window.alert("Hello World")
-        });
+ document.getElementbyId ()
  */
 
-import ChoiceHandler from './ChoiceHandler.js';
 
 "use strict";
-
+import ChoiceHandler from './ChoiceHandler.js';
 
 class main {
     constructor() {

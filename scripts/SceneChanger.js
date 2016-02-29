@@ -20,11 +20,40 @@ export default class SceneChanger {
 
     pullScene1Data(choice) {
         if (choice == true){
-            window.alert ("silence");
+            request.open("GET", data/ChoiceRemainSilent.csv,true);
+            request.send();
+            request.onload = function () {
+                const VOICE = 0;
+                const REPLY1 = 1;
+                const  REPLY2 =2;
+                let data = [];
+                for (let i = 0; i < data.length; i++) {
+                   data = data[i].split (/\n/);
+                }
+                changeVocie(data[VOICE]);
+            }
+
         } else if (choice == false){
-            window.alert ("idk what you doin her bb");
+            request.open("GET", data/ChoiceWhyHere.csv,true);
+            request.send();
+            request.onload = function () {
+                const COLUMNS = 1;
+                let data = [];
+                for (let i = 0; i < data.length; i++) {
+                    data = data[i].split (/\n/);
+                }
+            }
         }
 
+    }
+    changeVoice(data){
+        document.getElementById('voice').innerHTML = data;
+    }
+    changeReply1(data){
+        document.getElementById('reply1').innerHTML = data;
+    }
+    changeReply2(data){
+        document.getElementById('reply1').innerHTML = data;
     }
 }
 

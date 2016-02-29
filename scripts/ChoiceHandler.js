@@ -20,11 +20,11 @@ export default class ChoiceHandler {
 
         let reply1 = document.getElementById("reply1").addEventListener("click", function(){
             let choice = true;
-            sceneChanger.pullScene1Data(choice)
+            sceneChanger.pullScene1Data(choice);
         });
         let reply2 = document.getElementById("reply2").addEventListener("click", function() {
             let choice = false;
-            sceneChanger.pullScene1Data(choice)
+            sceneChanger.pullScene1Data(choice);
         });
     }
 

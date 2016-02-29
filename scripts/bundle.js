@@ -44,6 +44,14 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
+	/**
+	 AUTHOR: Joe Barbercheck
+	 VERSION: 1.0
+	 CREATED: 2-12-16
+	 ASSIGNMENT: Text Adventure
+	 document.getElementbyId ()
+	 */
+
 	"use strict";
 
 	var _ChoiceHandler = __webpack_require__(1);
@@ -52,17 +60,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /**
-	                                                                                                                                                           AUTHOR: Joe Barbercheck
-	                                                                                                                                                           VERSION: 1.0
-	                                                                                                                                                           CREATED: 2-12-16
-	                                                                                                                                                           ASSIGNMENT: Text Adventure
-	                                                                                                                                                           document.getElementById("reply1").addEventListener("click", function() {
-	                                                                                                                                                                      window.alert("Hello World")
-	                                                                                                                                                                  });
-	                                                                                                                                                           */
-
-	"use strict";
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	var main = function main() {
 	    _classCallCheck(this, main);
@@ -166,10 +164,44 @@
 	        key: "pullScene1Data",
 	        value: function pullScene1Data(choice) {
 	            if (choice == true) {
-	                window.alert("silence");
+	                request.open("GET", data / ChoiceRemainSilent.csv, true);
+	                request.send();
+	                request.onload = function () {
+	                    var VOICE = 0;
+	                    var REPLY1 = 1;
+	                    var REPLY2 = 2;
+	                    var data = [];
+	                    for (var i = 0; i < data.length; i++) {
+	                        data = data[i].split(/\n/);
+	                    }
+	                    changeVocie(data[VOICE]);
+	                };
 	            } else if (choice == false) {
-	                window.alert("idk what you doin her bb");
+	                request.open("GET", data / ChoiceWhyHere.csv, true);
+	                request.send();
+	                request.onload = function () {
+	                    var COLUMNS = 1;
+	                    var data = [];
+	                    for (var i = 0; i < data.length; i++) {
+	                        data = data[i].split(/\n/);
+	                    }
+	                };
 	            }
+	        }
+	    }, {
+	        key: "changeVoice",
+	        value: function changeVoice(data) {
+	            document.getElementById('voice').innerHTML = data;
+	        }
+	    }, {
+	        key: "changeReply1",
+	        value: function changeReply1(data) {
+	            document.getElementById('reply1').innerHTML = data;
+	        }
+	    }, {
+	        key: "changeReply2",
+	        value: function changeReply2(data) {
+	            document.getElementById('reply1').innerHTML = data;
 	        }
 	    }]);
 
