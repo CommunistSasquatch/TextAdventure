@@ -14,46 +14,17 @@ export default class SceneChanger {
         SceneLoader.loadData("data/ChoiceRemainSilent.csv", sceneChanger.createScene);
     }
 
-    createScene(){
+    createScene() {
         let sceneChanger = new SceneChanger();
     }
 
     pullScene1Data(choice) {
-        if (choice == true){
-            request.open("GET", data/ChoiceRemainSilent.csv,true);
-            request.send();
-            request.onload = function () {
-                const VOICE = 0;
-                const REPLY1 = 1;
-                const  REPLY2 =2;
-                let data = [];
-                for (let i = 0; i < data.length; i++) {
-                   data = data[i].split (/\n/);
-                }
-                changeVocie(data[VOICE]);
-            }
-
+        if (choice == true) {
+            window.alert("memes")
         } else if (choice == false){
-            request.open("GET", data/ChoiceWhyHere.csv,true);
-            request.send();
-            request.onload = function () {
-                const COLUMNS = 1;
-                let data = [];
-                for (let i = 0; i < data.length; i++) {
-                    data = data[i].split (/\n/);
-                }
-            }
+            window.alert("no bueno")
         }
 
-    }
-    changeVoice(data){
-        document.getElementById('voice').innerHTML = data;
-    }
-    changeReply1(data){
-        document.getElementById('reply1').innerHTML = data;
-    }
-    changeReply2(data){
-        document.getElementById('reply1').innerHTML = data;
     }
 }
 

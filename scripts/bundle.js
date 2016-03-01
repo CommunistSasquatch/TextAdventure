@@ -164,44 +164,10 @@
 	        key: "pullScene1Data",
 	        value: function pullScene1Data(choice) {
 	            if (choice == true) {
-	                request.open("GET", data / ChoiceRemainSilent.csv, true);
-	                request.send();
-	                request.onload = function () {
-	                    var VOICE = 0;
-	                    var REPLY1 = 1;
-	                    var REPLY2 = 2;
-	                    var data = [];
-	                    for (var i = 0; i < data.length; i++) {
-	                        data = data[i].split(/\n/);
-	                    }
-	                    changeVocie(data[VOICE]);
-	                };
+	                window.alert("memes");
 	            } else if (choice == false) {
-	                request.open("GET", data / ChoiceWhyHere.csv, true);
-	                request.send();
-	                request.onload = function () {
-	                    var COLUMNS = 1;
-	                    var data = [];
-	                    for (var i = 0; i < data.length; i++) {
-	                        data = data[i].split(/\n/);
-	                    }
-	                };
+	                window.alert("no bueno");
 	            }
-	        }
-	    }, {
-	        key: "changeVoice",
-	        value: function changeVoice(data) {
-	            document.getElementById('voice').innerHTML = data;
-	        }
-	    }, {
-	        key: "changeReply1",
-	        value: function changeReply1(data) {
-	            document.getElementById('reply1').innerHTML = data;
-	        }
-	    }, {
-	        key: "changeReply2",
-	        value: function changeReply2(data) {
-	            document.getElementById('reply1').innerHTML = data;
 	        }
 	    }]);
 
