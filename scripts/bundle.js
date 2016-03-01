@@ -67,6 +67,7 @@
 	};
 
 	window.onload = function () {
+
 	    new main();
 	    new _ChoiceHandler2.default().getReply();
 	};
@@ -135,7 +136,54 @@
 	 VERSION: 1.0
 	 CREATED: 2-12-16
 	 ASSIGNMENT: Text Adventure
+
 	 document.getElementbyId ()
+	 let request = new XMLHttpRequest();
+	 request.open("GET", "./data/ChoiceRemainSilent.csv", true);
+	 request.send();
+	 request.onload = function () {
+	                let data, middleData, finalData = [];
+	                for (let i = 0; i < data.length; i++) {
+	                    middleData = data[i].split(/\n/);
+	                    finalData[i] = [];
+	                    for (let j = 0; j < COLUMNS; j++) {
+	                        finalData[i][j] = middleData[j];
+	                    }
+	                }
+	                callback(finalData);
+	                window.alert("hi");
+
+	                 let request = new XMLHttpRequest();
+	            request.open("GET", "./data/ChoiceWhyHere.csv", true);
+	            request.send();
+	            request.onload = function() {
+	                const COLUMNS = 3;
+	                let data, middleData, finalData = [];
+	                for (let i = 0; i < data.length; i++) {
+	                    middleData = data[i].split(/\n/);
+	                    finalData[i] = []; //makes it an MD array
+	                    for (let j = 0; j < COLUMNS; j++) {
+	                        finalData[i][j] = middleData[j];
+	                    }
+	                }
+	                callback(finalData);
+	            };
+
+
+
+	                changeVoice(data){
+	        document.getElementById('voice').innerHTML = data;
+	    }
+	    changeReply1(data){
+	        document.getElementById('reply1').innerHTML = data;
+	    }
+	    changeReply2(data){
+	        document.getElementById('reply1').innerHTML = data;
+	    }
+
+
+
+	            SceneLoader.loadData("data/ChoiceRemainSilent.csv", sceneChanger.createScene);
 	 */
 
 	"use strict";
@@ -151,57 +199,22 @@
 	var SceneChanger = function () {
 	    function SceneChanger() {
 	        _classCallCheck(this, SceneChanger);
-
-	        SceneLoader.loadData("data/ChoiceRemainSilent.csv", sceneChanger.createScene);
 	    }
 
 	    _createClass(SceneChanger, [{
 	        key: "createScene",
 	        value: function createScene() {
 	            var sceneChanger = new SceneChanger();
+	            sceneChanger.pullScene1Data();
 	        }
 	    }, {
 	        key: "pullScene1Data",
 	        value: function pullScene1Data(choice) {
 	            if (choice == true) {
-	                request.open("GET", data / ChoiceRemainSilent.csv, true);
-	                request.send();
-	                request.onload = function () {
-	                    var VOICE = 0;
-	                    var REPLY1 = 1;
-	                    var REPLY2 = 2;
-	                    var data = [];
-	                    for (var i = 0; i < data.length; i++) {
-	                        data = data[i].split(/\n/);
-	                    }
-	                    changeVocie(data[VOICE]);
-	                };
-	            } else if (choice == false) {
-	                request.open("GET", data / ChoiceWhyHere.csv, true);
-	                request.send();
-	                request.onload = function () {
-	                    var COLUMNS = 1;
-	                    var data = [];
-	                    for (var i = 0; i < data.length; i++) {
-	                        data = data[i].split(/\n/);
-	                    }
-	                };
+	                window.alert("asdasddas");
+	            } else if (choice == true) {
+	                window.alert("asdasddfgdfgdfgdfgdas");
 	            }
-	        }
-	    }, {
-	        key: "changeVoice",
-	        value: function changeVoice(data) {
-	            document.getElementById('voice').innerHTML = data;
-	        }
-	    }, {
-	        key: "changeReply1",
-	        value: function changeReply1(data) {
-	            document.getElementById('reply1').innerHTML = data;
-	        }
-	    }, {
-	        key: "changeReply2",
-	        value: function changeReply2(data) {
-	            document.getElementById('reply1').innerHTML = data;
 	        }
 	    }]);
 
