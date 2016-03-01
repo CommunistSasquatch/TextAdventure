@@ -3,7 +3,7 @@
  VERSION: 1.0
  CREATED: 2-12-16
  ASSIGNMENT: Text Adventure
- document.getElementbyId ()
+ Scene Changer
  */
 
 "use strict";
@@ -19,22 +19,52 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var SceneChanger = function () {
     function SceneChanger() {
         _classCallCheck(this, SceneChanger);
-
-        SceneLoader.loadData("data/ChoiceRemainSilent.csv", sceneChanger.createScene);
     }
 
     _createClass(SceneChanger, [{
         key: "createScene",
         value: function createScene() {
             var sceneChanger = new SceneChanger();
+            sceneChanger.loadData("data/ChoiceRemainSilent.csv", sceneChanger.createScene);
         }
     }, {
         key: "pullScene1Data",
         value: function pullScene1Data(choice) {
             if (choice == true) {
-                window.alert("silence");
+                window.alert("first working");
+                var request = new XMLHttpRequest();
+                request.open("GET", filePath, true);
+                request.send();
+                request.onload = function () {
+                    var COLUMNS = 3;
+                    var data = undefined,
+                        middleData = undefined,
+                        finalData = [];
+                    for (var i = 0; i < data.length; i++) {
+                        middleData = data[i].split(/,/);
+                        finalData[i] = []; //makes it an MD array
+                        for (var j = 0; j < COLUMNS; j++) {
+                            finalData[i][j] = middleData[j];
+                        }
+                    }
+                    callback(finalData);
+                };
             } else if (choice == false) {
-                window.alert("idk what you doin her bb");
+
+                var request = new XMLHttpRequest();
+                request.open("GET", "./data/ChoiceWhyHere.csv", true);
+                request.send();
+                request.onload = function () {
+                    var COLUMNS = 3;
+                    var data = undefined,
+                        middleData = undefined,
+                        finalData = [];
+                    for (var i = 0; i < data.length; i++) {
+                        middleData = data[i].split(/\n/);
+                        window.alert("middleData[i]");
+                    }
+                    callback(finalData);
+                };
             }
         }
     }]);

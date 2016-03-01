@@ -3,7 +3,7 @@
  VERSION: 1.0
  CREATED: 2-12-16
  ASSIGNMENT: Text Adventure
- document.getElementbyId ()
+ Choice handler
  */
 
 "use strict";
@@ -12,6 +12,7 @@ import SceneChanger from './SceneChanger.js';
 
 export default class ChoiceHandler {
     constructor() {
+
     }
 
     getReply() {
