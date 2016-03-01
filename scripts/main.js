@@ -20,7 +20,6 @@ class main {
 
 
 window.onload = function() {
-
     new main();
     new ChoiceHandler().getReply();
 };

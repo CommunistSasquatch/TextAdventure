@@ -32,63 +32,10 @@ var SceneChanger = function () {
         key: "pullScene1Data",
         value: function pullScene1Data(choice) {
             if (choice == true) {
-                window.alert("hi");
-                var request = new XMLHttpRequest();
-                request.open("GET", "./data/ChoiceRemainSilent.csv", true);
-                request.send();
-                request.onload = function () {
-                    var data = undefined,
-                        middleData = undefined,
-                        finalData = [];
-                    for (var i = 0; i < data.length; i++) {
-                        middleData = data[i].split(/,/);
-                        finalData[i] = [];
-                        for (var j = 0; j < COLUMNS; j++) {
-                            finalData[i][j] = middleData[j];
-                        }
-                    }
-                    callback(finalData);
-                    window.alert("hi");
-                };
+                window.alert("silence");
             } else if (choice == false) {
-                (function () {
-                    var request = new XMLHttpRequest();
-                    request.open("GET", "./data/ChoiceWhyHere.csv", true);
-                    request.send();
-                    request.onload = function () {
-                        var COLUMNS = 3;
-                        var data = undefined,
-                            middleData = undefined,
-                            finalData = [];
-                        if (request.readyState === 4 && request.status === 200) {
-                            data = request.responseText.split(/\n/);
-                        }
-                        for (var i = 0; i < data.length; i++) {
-                            middleData = data[i].split(/,/);
-                            finalData[i] = []; //makes it an MD array
-                            for (var j = 0; j < COLUMNS; j++) {
-                                finalData[i][j] = middleData[j];
-                            }
-                        }
-                        callback(finalData);
-                    };
-                })();
+                window.alert("idk what you doin her bb");
             }
-        }
-    }, {
-        key: "changeVoice",
-        value: function changeVoice(data) {
-            document.getElementById('voice').innerHTML = data;
-        }
-    }, {
-        key: "changeReply1",
-        value: function changeReply1(data) {
-            document.getElementById('reply1').innerHTML = data;
-        }
-    }, {
-        key: "changeReply2",
-        value: function changeReply2(data) {
-            document.getElementById('reply1').innerHTML = data;
         }
     }]);
 
