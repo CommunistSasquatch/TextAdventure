@@ -158,46 +158,88 @@
 	        value: function createScene() {
 	            var sceneChanger = new SceneChanger();
 	            sceneChanger.loadData("data/ChoiceRemainSilent.csv", sceneChanger.createScene);
+	            sceneChanger.loadData("data/ChoiceWhyHere.csv", sceneChanger.createScene);
 	        }
 	    }, {
 	        key: "pullScene1Data",
 	        value: function pullScene1Data(choice) {
+	            var sceneChanger = new SceneChanger();
+	            var VOICE = 0;
+	            var SUBTITLE = 1;
+	            var BUTTON = 2;
 	            if (choice == true) {
-	                window.alert("first working");
-	                var request = new XMLHttpRequest();
-	                request.open("GET", filePath, true);
-	                request.send();
-	                request.onload = function () {
-	                    var COLUMNS = 3;
-	                    var data = undefined,
-	                        middleData = undefined,
-	                        finalData = [];
-	                    for (var i = 0; i < data.length; i++) {
-	                        middleData = data[i].split(/,/);
-	                        finalData[i] = []; //makes it an MD array
-	                        for (var j = 0; j < COLUMNS; j++) {
-	                            finalData[i][j] = middleData[j];
-	                        }
-	                    }
-	                    callback(finalData);
-	                };
-	            } else if (choice == false) {
+	                (function () {
+	                    var request = new XMLHttpRequest();
+	                    request.open("GET", "./data/ChoiceRemainSilent.csv", true);
+	                    request.send();
+	                    request.onload = function () {
+	                        var COLUMNS = 2;
 
-	                var request = new XMLHttpRequest();
-	                request.open("GET", "./data/ChoiceWhyHere.csv", true);
-	                request.send();
-	                request.onload = function () {
-	                    var COLUMNS = 3;
-	                    var data = undefined,
-	                        middleData = undefined,
-	                        finalData = [];
-	                    for (var i = 0; i < data.length; i++) {
-	                        middleData = data[i].split(/\n/);
-	                        window.alert("middleData[i]");
-	                    }
-	                    callback(finalData);
-	                };
+	                        var data = undefined,
+	                            middleData = undefined,
+	                            fileData = [];
+	                        if (request.readyState === 4 && request.status === 200) {
+	                            data = request.responseText.split(/\n/);
+	                        }
+	                        for (var i = 0; i < data.length; i++) {
+	                            middleData = data[i].split(/\n/);
+	                            fileData[i] = []; //makes it an MD array
+	                            for (var j = 0; j < COLUMNS; j++) {
+	                                fileData[i][j] = middleData[j];
+	                            }
+	                        }
+	                        sceneChanger.changeScene1(fileData);
+	                    };
+	                })();
+	            } else if (choice == false) {
+	                (function () {
+	                    var request = new XMLHttpRequest();
+	                    request.open("GET", "./data/ChoiceWhyHere.csv", true);
+	                    request.send();
+	                    request.onload = function () {
+	                        var COLUMNS = 2;
+
+	                        var data = undefined,
+	                            middleData = undefined,
+	                            fileData = [];
+	                        if (request.readyState === 4 && request.status === 200) {
+	                            data = request.responseText.split(/\n/);
+	                        }
+	                        for (var i = 0; i < data.length; i++) {
+	                            middleData = data[i].split(/\n/);
+	                            fileData[i] = []; //makes it an MD array
+	                            for (var j = 0; j < COLUMNS; j++) {
+	                                fileData[i][j] = middleData[j];
+	                            }
+	                        }
+	                        sceneChanger.changeScene2(fileData);
+	                    };
+	                })();
 	            }
+	        }
+	    }, {
+	        key: "changeScene1",
+	        value: function changeScene1(fileData) {
+	            var VOICE = 0;
+	            var SUBTITLE = 1;
+	            var BUTTON = 2;
+	            document.getElementById('voice').innerHTML = fileData[VOICE];
+	            document.getElementById('intro').innerHTML = fileData[SUBTITLE];
+	            document.getElementById('reply1').value = fileData[BUTTON];
+	            document.getElementById('reply2').style.visibility = 'hidden';
+	        }
+	    }, {
+	        key: "changeScene2",
+	        value: function changeScene2(fileData) {
+
+	            var VOICE = 0;
+	            var SUBTITLE = 1;
+	            var BUTTON1 = 2;
+	            var BUTTON2 = 3;
+	            document.getElementById('voice').innerHTML = fileData[VOICE];
+	            document.getElementById('intro').innerHTML = fileData[SUBTITLE];
+	            document.getElementById('reply1').value = fileData[BUTTON1];
+	            document.getElementById('reply2').value = fileData[BUTTON2];
 	        }
 	    }]);
 
