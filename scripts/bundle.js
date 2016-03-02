@@ -49,7 +49,7 @@
 	 VERSION: 1.0
 	 CREATED: 2-12-16
 	 ASSIGNMENT: Text Adventure
-	 document.getElementbyId ()
+	 Main
 	 */
 
 	"use strict";
@@ -108,15 +108,17 @@
 	        key: "getReply",
 	        value: function getReply() {
 	            var sceneChanger = new _SceneChanger2.default();
-	            var choiceHandler = new ChoiceHandler();
+	            var counter = 0;
 
 	            var reply1 = document.getElementById("reply1").addEventListener("click", function () {
 	                var choice = true;
-	                sceneChanger.pullScene1Data(choice);
+	                sceneChanger.selectScene(choice, counter);
+	                counter++;
 	            });
 	            var reply2 = document.getElementById("reply2").addEventListener("click", function () {
 	                var choice = false;
-	                sceneChanger.pullScene1Data(choice);
+	                sceneChanger.selectScene(choice, counter);
+	                counter = 0;
 	            });
 	        }
 	    }]);
@@ -128,7 +130,7 @@
 
 /***/ },
 /* 2 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 AUTHOR: Joe Barbercheck
@@ -146,6 +148,12 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+	var _FileIO = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./FileIO.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+	var _FileIO2 = _interopRequireDefault(_FileIO);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	var SceneChanger = function () {
@@ -156,65 +164,27 @@
 	    _createClass(SceneChanger, [{
 	        key: "createScene",
 	        value: function createScene() {
-	            var sceneChanger = new SceneChanger();
-	            sceneChanger.loadData("data/ChoiceRemainSilent.csv", sceneChanger.createScene);
-	            sceneChanger.loadData("data/ChoiceWhyHere.csv", sceneChanger.createScene);
+	            SceneChanger.loadData("data/ChoiceRemainSilent.csv", SceneChanger.createScene);
+	            SceneChanger.loadData("data/ChoiceWhyHere.csv", SceneChanger.createScene);
 	        }
 	    }, {
-	        key: "pullScene1Data",
-	        value: function pullScene1Data(choice) {
-	            var sceneChanger = new SceneChanger();
-	            var VOICE = 0;
-	            var SUBTITLE = 1;
-	            var BUTTON = 2;
-	            if (choice == true) {
-	                (function () {
-	                    var request = new XMLHttpRequest();
-	                    request.open("GET", "./data/ChoiceRemainSilent.csv", true);
-	                    request.send();
-	                    request.onload = function () {
-	                        var COLUMNS = 2;
-
-	                        var data = undefined,
-	                            middleData = undefined,
-	                            fileData = [];
-	                        if (request.readyState === 4 && request.status === 200) {
-	                            data = request.responseText.split(/\n/);
-	                        }
-	                        for (var i = 0; i < data.length; i++) {
-	                            middleData = data[i].split(/\n/);
-	                            fileData[i] = []; //makes it an MD array
-	                            for (var j = 0; j < COLUMNS; j++) {
-	                                fileData[i][j] = middleData[j];
-	                            }
-	                        }
-	                        sceneChanger.changeScene1(fileData);
-	                    };
-	                })();
-	            } else if (choice == false) {
-	                (function () {
-	                    var request = new XMLHttpRequest();
-	                    request.open("GET", "./data/ChoiceWhyHere.csv", true);
-	                    request.send();
-	                    request.onload = function () {
-	                        var COLUMNS = 2;
-
-	                        var data = undefined,
-	                            middleData = undefined,
-	                            fileData = [];
-	                        if (request.readyState === 4 && request.status === 200) {
-	                            data = request.responseText.split(/\n/);
-	                        }
-	                        for (var i = 0; i < data.length; i++) {
-	                            middleData = data[i].split(/\n/);
-	                            fileData[i] = []; //makes it an MD array
-	                            for (var j = 0; j < COLUMNS; j++) {
-	                                fileData[i][j] = middleData[j];
-	                            }
-	                        }
-	                        sceneChanger.changeScene2(fileData);
-	                    };
-	                })();
+	        key: "selectScene",
+	        value: function selectScene(choice, counter) {
+	            var fileIO = new _FileIO2.default();
+	            var CHOICE2 = 1;
+	            var scene = undefined;
+	            if (choice == true && counter == 0) {
+	                scene = "./data/ChoiceWhyHere.csv";
+	                fileIO.pullSceneData(scene);
+	            } else if (choice == false && counter == 0) {
+	                scene = "./data/ChoiceRemainSilent.csv";
+	                fileIO.pullSceneData(scene);
+	            } else if (choice == true && counter == CHOICE2) {
+	                scene = "./data/ChoiceLetsGo.csv";
+	                fileIO.pullSceneData(scene);
+	            } else if (choice == false && counter == CHOICE2) {
+	                scene = "./data/ChoiceLetsStay.csv";
+	                fileIO.pullSceneData(scene);
 	            }
 	        }
 	    }, {
@@ -231,7 +201,6 @@
 	    }, {
 	        key: "changeScene2",
 	        value: function changeScene2(fileData) {
-
 	            var VOICE = 0;
 	            var SUBTITLE = 1;
 	            var BUTTON1 = 2;

@@ -31,15 +31,17 @@ var ChoiceHandler = function () {
         key: "getReply",
         value: function getReply() {
             var sceneChanger = new _SceneChanger2.default();
-            var choiceHandler = new ChoiceHandler();
+            var counter = 0;
 
             var reply1 = document.getElementById("reply1").addEventListener("click", function () {
                 var choice = true;
-                sceneChanger.pullScene1Data(choice);
+                sceneChanger.selectScene(choice, counter);
+                counter++;
             });
             var reply2 = document.getElementById("reply2").addEventListener("click", function () {
                 var choice = false;
-                sceneChanger.pullScene1Data(choice);
+                sceneChanger.selectScene(choice, counter);
+                counter = 0;
             });
         }
     }]);

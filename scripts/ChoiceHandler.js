@@ -17,19 +17,20 @@ export default class ChoiceHandler {
 
     getReply() {
         let sceneChanger = new SceneChanger();
-        let choiceHandler = new ChoiceHandler();
+        let counter = 0;
 
-        let reply1 = document.getElementById("reply1").addEventListener("click", function(){
+        let reply1 = document.getElementById("reply1").addEventListener("click", function () {
             let choice = true;
-            sceneChanger.pullScene1Data(choice);
+            sceneChanger.selectScene(choice, counter);
+            counter++;
         });
-        let reply2 = document.getElementById("reply2").addEventListener("click", function() {
+        let reply2 = document.getElementById("reply2").addEventListener("click", function () {
             let choice = false;
-            sceneChanger.pullScene1Data(choice);
+            sceneChanger.selectScene(choice, counter);
+            counter = 0;
+
         });
     }
-
-
 
 
 }

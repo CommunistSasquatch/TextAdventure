@@ -7,7 +7,7 @@
  */
 
 "use strict";
-
+import FileIO from './FileIO.js';
 export default class SceneChanger {
 
     constructor() {
@@ -15,61 +15,31 @@ export default class SceneChanger {
     }
 
     createScene() {
-        let sceneChanger = new SceneChanger();
-        sceneChanger.loadData("data/ChoiceRemainSilent.csv", sceneChanger.createScene);
-        sceneChanger.loadData("data/ChoiceWhyHere.csv", sceneChanger.createScene);
+        SceneChanger.loadData("data/ChoiceRemainSilent.csv", SceneChanger.createScene);
+        SceneChanger.loadData("data/ChoiceWhyHere.csv", SceneChanger.createScene);
     }
+    selectScene(choice, counter){
+        let fileIO = new FileIO();
+        const CHOICE2 = 1;
+        let scene;
+        if (choice == true && counter  == 0) {
+            scene = "./data/ChoiceWhyHere.csv";
+            fileIO.pullSceneData(scene);
 
-    pullScene1Data(choice) {
-        let sceneChanger = new SceneChanger();
-        const VOICE = 0;
-        const SUBTITLE = 1;
-        const BUTTON = 2;
-        if (choice == true) {
-            let request = new XMLHttpRequest();
-            request.open("GET", "./data/ChoiceRemainSilent.csv", true);
-            request.send();
-            request.onload = function() {
-                const COLUMNS = 2;
+        } else if (choice == false && counter == 0){
+            scene = "./data/ChoiceRemainSilent.csv";
+            fileIO.pullSceneData(scene);
 
-                let data, middleData, fileData = [];
-                if (request.readyState === 4 && request.status === 200) {
-                    data = request.responseText.split(/\n/);
-                }
-                for (let i = 0; i < data.length; i++) {
-                    middleData = data[i].split(/\n/);
-                    fileData[i] = []; //makes it an MD array
-                    for (let j = 0; j < COLUMNS; j++) {
-                        fileData[i][j] = middleData[j];
-                    }
-                }
-                sceneChanger.changeScene1(fileData);
+        } else if (choice == true && counter == CHOICE2){
+            scene = "./data/ChoiceLetsGo.csv";
+            fileIO.pullSceneData(scene);
 
-            };
+        } else if (choice == false && counter == CHOICE2){
+            scene = "./data/ChoiceLetsStay.csv";
+            fileIO.pullSceneData(scene);
 
         }
-        else if (choice == false) {
-                let request = new XMLHttpRequest();
-                request.open("GET", "./data/ChoiceWhyHere.csv", true);
-                request.send();
-                request.onload = function() {
-                    const COLUMNS = 2;
-
-                    let data, middleData, fileData = [];
-                    if (request.readyState === 4 && request.status === 200) {
-                        data = request.responseText.split(/\n/);
-                    }
-                    for (let i = 0; i < data.length; i++) {
-                        middleData = data[i].split(/\n/);
-                        fileData[i] = []; //makes it an MD array
-                        for (let j = 0; j < COLUMNS; j++) {
-                            fileData[i][j] = middleData[j];
-                        }
-                    }
-                    sceneChanger.changeScene2(fileData);
-                };
-            }
-         }
+    }
 
     changeScene1(fileData){
         const VOICE = 0;
@@ -77,12 +47,11 @@ export default class SceneChanger {
         const BUTTON = 2;
         document.getElementById('voice').innerHTML = fileData[VOICE];
         document.getElementById('intro').innerHTML = fileData[SUBTITLE];
-        document.getElementById('reply1').value =fileData[BUTTON];
+        document.getElementById('reply1').value = fileData[BUTTON];
         document.getElementById('reply2').style.visibility = 'hidden';
     }
 
     changeScene2 (fileData){
-
         const VOICE = 0;
         const SUBTITLE = 1;
         const BUTTON1 = 2;
