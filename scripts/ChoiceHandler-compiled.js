@@ -25,23 +25,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var ChoiceHandler = function () {
     function ChoiceHandler() {
         _classCallCheck(this, ChoiceHandler);
+
+        ChoiceHandler.counter = 0;
     }
 
     _createClass(ChoiceHandler, [{
         key: "getReply",
         value: function getReply() {
             var sceneChanger = new _SceneChanger2.default();
-            var counter = 0;
-
             var reply1 = document.getElementById("reply1").addEventListener("click", function () {
                 var choice = true;
-                sceneChanger.selectScene(choice, counter);
-                counter++;
+                sceneChanger.selectScene(choice, ChoiceHandler.counter);
             });
             var reply2 = document.getElementById("reply2").addEventListener("click", function () {
                 var choice = false;
-                sceneChanger.selectScene(choice, counter);
-                counter = 0;
+                sceneChanger.selectScene(choice, ChoiceHandler.counter);
             });
         }
     }]);

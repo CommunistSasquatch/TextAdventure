@@ -9,6 +9,7 @@
 
 "use strict";
 import ChoiceHandler from './ChoiceHandler.js';
+import FileIO from './FileIO.js';
 
 class main {
     constructor() {
@@ -22,4 +23,5 @@ class main {
 window.onload = function() {
     new main();
     new ChoiceHandler().getReply();
+    new FileIO();
 };

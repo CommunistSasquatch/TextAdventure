@@ -8,9 +8,13 @@
 
 "use strict";
 
-var _ChoiceHandler = require("./ChoiceHandler.js");
+var _ChoiceHandler = require('./ChoiceHandler.js');
 
 var _ChoiceHandler2 = _interopRequireDefault(_ChoiceHandler);
+
+var _FileIO = require('./FileIO.js');
+
+var _FileIO2 = _interopRequireDefault(_FileIO);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -23,6 +27,7 @@ var main = function main() {
 window.onload = function () {
     new main();
     new _ChoiceHandler2.default().getReply();
+    new _FileIO2.default();
 };
 
 //# sourceMappingURL=main-compiled.js.map

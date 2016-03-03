@@ -12,23 +12,19 @@ import SceneChanger from './SceneChanger.js';
 
 export default class ChoiceHandler {
     constructor() {
+        ChoiceHandler.counter = 0;
 
     }
 
     getReply() {
         let sceneChanger = new SceneChanger();
-        let counter = 0;
-
         let reply1 = document.getElementById("reply1").addEventListener("click", function () {
             let choice = true;
-            sceneChanger.selectScene(choice, counter);
-            counter++;
+            sceneChanger.selectScene(choice, ChoiceHandler.counter);
         });
         let reply2 = document.getElementById("reply2").addEventListener("click", function () {
             let choice = false;
-            sceneChanger.selectScene(choice, counter);
-            counter = 0;
-
+            sceneChanger.selectScene(choice, ChoiceHandler.counter);
         });
     }
 
