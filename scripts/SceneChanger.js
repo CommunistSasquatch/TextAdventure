@@ -21,35 +21,31 @@ export default class SceneChanger {
         if (choice == true && counter  == 0) {
             scene = "./data/ChoiceWhyHere.csv";
             fileIO.pullSceneData(scene);
-            console.log(1);
         } else if (choice == false && counter == 0){
             scene = "./data/ChoiceRemainSilent.csv";
             fileIO.pullSceneData(scene);
-            console.log(2);
         } else if (choice == true && counter == CHOICE2){
             scene = "./data/ChoiceLetsGo.csv";
             fileIO.pullSceneData(scene);
-            console.log(3);
         } else if (choice == false && counter == CHOICE2){
             scene = "./data/ChoiceLetsStay.csv";
             fileIO.pullSceneData(scene);
-            console.log(4);
         }
     }
 
-    sceneDecider (sceneNumber) {
+    sceneDecider (sceneNumber,fileData) {
         const SILENT = 0;
         const WHY_HERE = 1;
         const GO = 2;
         const STAY = 3;
         if (sceneNumber == SILENT) {
-            SceneChanger.changeScene1();
+            this.changeScene1(fileData);
         } else if (sceneNumber == WHY_HERE) {
-            SceneChanger.changeScene2();
+            this.changeScene2(fileData);
         } else if (sceneNumber == GO) {
-
+            this.changeScene3(fileData);
         } else if (sceneNumber == STAY) {
-
+            this.changeScene3(fileData);
         }
 
 }
@@ -65,6 +61,28 @@ export default class SceneChanger {
     }
 
     changeScene2 (fileData){
+        const VOICE = 1;
+        const SUBTITLE = 2;
+        const BUTTON1 = 3;
+        const BUTTON2 = 4;
+        document.getElementById('voice').innerHTML = fileData[VOICE];
+        document.getElementById('intro').innerHTML = fileData[SUBTITLE];
+        document.getElementById('reply1').value = fileData[BUTTON1];
+        document.getElementById('reply2').value = fileData[BUTTON2]
+
+    }
+    changeScene3 (fileData){
+        const VOICE = 1;
+        const SUBTITLE = 2;
+        const BUTTON1 = 3;
+        const BUTTON2 = 4;
+        document.getElementById('voice').innerHTML = fileData[VOICE];
+        document.getElementById('intro').innerHTML = fileData[SUBTITLE];
+        document.getElementById('reply1').value = fileData[BUTTON1];
+        document.getElementById('reply2').value = fileData[BUTTON2]
+
+    }
+    changeScene3 (fileData){
         const VOICE = 1;
         const SUBTITLE = 2;
         const BUTTON1 = 3;

@@ -19,10 +19,13 @@ export default class ChoiceHandler {
     getReply() {
         let sceneChanger = new SceneChanger();
         let reply1 = document.getElementById("reply1").addEventListener("click", function () {
+            this.counter = this.counter + 1;
+            console.log(this.counter);
             let choice = true;
             sceneChanger.selectScene(choice, ChoiceHandler.counter);
         });
         let reply2 = document.getElementById("reply2").addEventListener("click", function () {
+            this.counter = this.counter + 1;
             let choice = false;
             sceneChanger.selectScene(choice, ChoiceHandler.counter);
         });

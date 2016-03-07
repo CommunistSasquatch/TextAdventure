@@ -10,6 +10,7 @@
 "use strict";
 import ChoiceHandler from './ChoiceHandler.js';
 import FileIO from './FileIO.js';
+import SceneChanger from './SceneChanger.js';
 
 class main {
     constructor() {

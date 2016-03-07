@@ -62,6 +62,10 @@
 
 	var _FileIO2 = _interopRequireDefault(_FileIO);
 
+	var _SceneChanger = __webpack_require__(2);
+
+	var _SceneChanger2 = _interopRequireDefault(_SceneChanger);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -116,10 +120,13 @@
 	        value: function getReply() {
 	            var sceneChanger = new _SceneChanger2.default();
 	            var reply1 = document.getElementById("reply1").addEventListener("click", function () {
+	                this.counter = this.counter + 1;
+	                console.log(this.counter);
 	                var choice = true;
 	                sceneChanger.selectScene(choice, ChoiceHandler.counter);
 	            });
 	            var reply2 = document.getElementById("reply2").addEventListener("click", function () {
+	                this.counter = this.counter + 1;
 	                var choice = false;
 	                sceneChanger.selectScene(choice, ChoiceHandler.counter);
 	            });
@@ -173,33 +180,33 @@
 	            if (choice == true && counter == 0) {
 	                scene = "./data/ChoiceWhyHere.csv";
 	                fileIO.pullSceneData(scene);
-	                console.log(1);
 	            } else if (choice == false && counter == 0) {
 	                scene = "./data/ChoiceRemainSilent.csv";
 	                fileIO.pullSceneData(scene);
-	                console.log(2);
 	            } else if (choice == true && counter == CHOICE2) {
 	                scene = "./data/ChoiceLetsGo.csv";
 	                fileIO.pullSceneData(scene);
-	                console.log(3);
 	            } else if (choice == false && counter == CHOICE2) {
 	                scene = "./data/ChoiceLetsStay.csv";
 	                fileIO.pullSceneData(scene);
-	                console.log(4);
 	            }
 	        }
 	    }, {
 	        key: "sceneDecider",
-	        value: function sceneDecider(sceneNumber) {
+	        value: function sceneDecider(sceneNumber, fileData) {
 	            var SILENT = 0;
 	            var WHY_HERE = 1;
 	            var GO = 2;
 	            var STAY = 3;
 	            if (sceneNumber == SILENT) {
-	                SceneChanger.changeScene1();
+	                this.changeScene1(fileData);
 	            } else if (sceneNumber == WHY_HERE) {
-	                SceneChanger.changeScene2();
-	            } else if (sceneNumber == GO) {} else if (sceneNumber == STAY) {}
+	                this.changeScene2(fileData);
+	            } else if (sceneNumber == GO) {
+	                this.changeScene3(fileData);
+	            } else if (sceneNumber == STAY) {
+	                this.changeScene3(fileData);
+	            }
 	        }
 	    }, {
 	        key: "changeScene1",
@@ -215,6 +222,30 @@
 	    }, {
 	        key: "changeScene2",
 	        value: function changeScene2(fileData) {
+	            var VOICE = 1;
+	            var SUBTITLE = 2;
+	            var BUTTON1 = 3;
+	            var BUTTON2 = 4;
+	            document.getElementById('voice').innerHTML = fileData[VOICE];
+	            document.getElementById('intro').innerHTML = fileData[SUBTITLE];
+	            document.getElementById('reply1').value = fileData[BUTTON1];
+	            document.getElementById('reply2').value = fileData[BUTTON2];
+	        }
+	    }, {
+	        key: "changeScene3",
+	        value: function changeScene3(fileData) {
+	            var VOICE = 1;
+	            var SUBTITLE = 2;
+	            var BUTTON1 = 3;
+	            var BUTTON2 = 4;
+	            document.getElementById('voice').innerHTML = fileData[VOICE];
+	            document.getElementById('intro').innerHTML = fileData[SUBTITLE];
+	            document.getElementById('reply1').value = fileData[BUTTON1];
+	            document.getElementById('reply2').value = fileData[BUTTON2];
+	        }
+	    }, {
+	        key: "changeScene3",
+	        value: function changeScene3(fileData) {
 	            var VOICE = 1;
 	            var SUBTITLE = 2;
 	            var BUTTON1 = 3;
@@ -281,17 +312,16 @@
 	                    fileData = [];
 	                if (request.readyState === 4 && request.status === 200) {
 	                    data = request.responseText.split(/\n/);
-	                    console.log(data);
-	                }for (var i = 0; i < data.length; i++) {
+	                }
+	                for (var i = 0; i < data.length; i++) {
 	                    middleData = data[i].split(/\n/);
 	                    fileData[i] = [];
 	                    for (var j = 0; j < COLUMNS; j++) {
 	                        fileData[i][j] = middleData[j];
-	                        //console.log(fileData[i][j]);
 	                    }
 	                }
-	                sceneNumber = fileData[0][1];
-	                //console.log (sceneNumber);
+	                sceneNumber = fileData[0][0];
+	                FileIO.sceneChanger.sceneDecider(sceneNumber, fileData);
 	            };
 	        }
 	    }]);
