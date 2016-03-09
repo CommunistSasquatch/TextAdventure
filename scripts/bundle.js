@@ -76,7 +76,7 @@
 
 	window.onload = function () {
 	    new main();
-	    new _ChoiceHandler2.default();
+	    new _ChoiceHandler2.default().getReply();
 	    new _FileIO2.default();
 	};
 
@@ -112,24 +112,22 @@
 	    function ChoiceHandler() {
 	        _classCallCheck(this, ChoiceHandler);
 
-	        ChoiceHandler.counter = -1;
+	        ChoiceHandler.counter = 0;
 	    }
 
 	    _createClass(ChoiceHandler, [{
 	        key: "getReply",
 	        value: function getReply() {
-	            var choice = undefined;
 	            var sceneChanger = new _SceneChanger2.default();
-	            document.getElementById("reply1").addEventListener("click", function () {
-	                ChoiceHandler.counter++;
-	                console.log(ChoiceHandler.counter);
-	                choice = true;
+	            var reply1 = document.getElementById("reply1").addEventListener("click", function () {
+	                this.counter = this.counter + 1;
+	                console.log(this.counter);
+	                var choice = true;
 	                sceneChanger.selectScene(choice, ChoiceHandler.counter);
 	            });
-	            document.getElementById("reply2").addEventListener("click", function () {
-	                ChoiceHandler.counter++;
-	                console.log(ChoiceHandler.counter);
-	                choice = false;
+	            var reply2 = document.getElementById("reply2").addEventListener("click", function () {
+	                this.counter = this.counter + 1;
+	                var choice = false;
 	                sceneChanger.selectScene(choice, ChoiceHandler.counter);
 	            });
 	        }
@@ -164,10 +162,6 @@
 
 	var _FileIO2 = _interopRequireDefault(_FileIO);
 
-	var _ChoiceHandler = __webpack_require__(1);
-
-	var _ChoiceHandler2 = _interopRequireDefault(_ChoiceHandler);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -178,7 +172,7 @@
 	    }
 
 	    _createClass(SceneChanger, [{
-	        key: 'selectScene',
+	        key: "selectScene",
 	        value: function selectScene(choice, counter) {
 	            var fileIO = new _FileIO2.default();
 	            var CHOICE2 = 1;
@@ -198,38 +192,35 @@
 	            }
 	        }
 	    }, {
-	        key: 'sceneDecider',
+	        key: "sceneDecider",
 	        value: function sceneDecider(sceneNumber, fileData) {
 	            var SILENT = 0;
 	            var WHY_HERE = 1;
 	            var GO = 2;
 	            var STAY = 3;
 	            if (sceneNumber == SILENT) {
-	                console.log("SILENT");
 	                this.changeScene1(fileData);
 	            } else if (sceneNumber == WHY_HERE) {
-	                console.log("WHY HERE");
 	                this.changeScene2(fileData);
-	            } else if (sceneNumber == GO && choice == true) {
-	                console.log("GO");
+	            } else if (sceneNumber == GO) {
 	                this.changeScene3(fileData);
-	            } else if (sceneNumber == STAY && choice == false) {
-	                console.log("STAY");
+	            } else if (sceneNumber == STAY) {
 	                this.changeScene3(fileData);
 	            }
 	        }
 	    }, {
-	        key: 'changeScene1',
+	        key: "changeScene1",
 	        value: function changeScene1(fileData) {
 	            var VOICE = 1;
 	            var SUBTITLE = 2;
+	            var BUTTON = 3;
 	            document.getElementById('voice').innerHTML = fileData[VOICE];
 	            document.getElementById('intro').innerHTML = fileData[SUBTITLE];
-	            document.getElementById('reply1').style.visibility = 'hidden';
+	            document.getElementById('reply1').value = fileData[BUTTON];
 	            document.getElementById('reply2').style.visibility = 'hidden';
 	        }
 	    }, {
-	        key: 'changeScene2',
+	        key: "changeScene2",
 	        value: function changeScene2(fileData) {
 	            var VOICE = 1;
 	            var SUBTITLE = 2;
@@ -241,7 +232,7 @@
 	            document.getElementById('reply2').value = fileData[BUTTON2];
 	        }
 	    }, {
-	        key: 'changeScene3',
+	        key: "changeScene3",
 	        value: function changeScene3(fileData) {
 	            var VOICE = 1;
 	            var SUBTITLE = 2;
@@ -253,7 +244,7 @@
 	            document.getElementById('reply2').value = fileData[BUTTON2];
 	        }
 	    }, {
-	        key: 'changeScene3',
+	        key: "changeScene3",
 	        value: function changeScene3(fileData) {
 	            var VOICE = 1;
 	            var SUBTITLE = 2;
