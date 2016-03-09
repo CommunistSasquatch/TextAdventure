@@ -8,6 +8,7 @@
 
 "use strict";
 import FileIO from './FileIO.js';
+import ChoiceHandler from './ChoiceHandler.js';
 export default class SceneChanger {
 
     constructor() {
@@ -31,6 +32,7 @@ export default class SceneChanger {
             scene = "./data/ChoiceLetsStay.csv";
             fileIO.pullSceneData(scene);
         }
+
     }
 
     sceneDecider (sceneNumber,fileData) {
@@ -39,12 +41,16 @@ export default class SceneChanger {
         const GO = 2;
         const STAY = 3;
         if (sceneNumber == SILENT) {
+            console.log ("SILENT");
             this.changeScene1(fileData);
         } else if (sceneNumber == WHY_HERE) {
+            console.log ("WHY HERE");
             this.changeScene2(fileData);
-        } else if (sceneNumber == GO) {
+        } else if (sceneNumber == GO  && choice == true) {
+            console.log ("GO");
             this.changeScene3(fileData);
-        } else if (sceneNumber == STAY) {
+        } else if (sceneNumber == STAY  && choice == false) {
+            console.log ("STAY");
             this.changeScene3(fileData);
         }
 
@@ -53,11 +59,11 @@ export default class SceneChanger {
     changeScene1(fileData){
         const VOICE = 1;
         const SUBTITLE = 2;
-        const BUTTON = 3;
         document.getElementById('voice').innerHTML = fileData[VOICE];
         document.getElementById('intro').innerHTML = fileData[SUBTITLE];
-        document.getElementById('reply1').value = fileData[BUTTON];
+        document.getElementById('reply1').style.visibility = 'hidden';
         document.getElementById('reply2').style.visibility = 'hidden';
+
     }
 
     changeScene2 (fileData){
