@@ -112,21 +112,21 @@
 	    function ChoiceHandler() {
 	        _classCallCheck(this, ChoiceHandler);
 
-	        ChoiceHandler.counter = 0;
+	        ChoiceHandler.counter = -1;
 	    }
 
 	    _createClass(ChoiceHandler, [{
 	        key: "getReply",
 	        value: function getReply() {
 	            var sceneChanger = new _SceneChanger2.default();
-	            var reply1 = document.getElementById("reply1").addEventListener("click", function () {
-	                this.counter = this.counter + 1;
-	                console.log(this.counter);
+	            document.getElementById("reply1").addEventListener("click", function () {
+	                ChoiceHandler.counter++;
+	                console.log(ChoiceHandler.counter);
 	                var choice = true;
 	                sceneChanger.selectScene(choice, ChoiceHandler.counter);
 	            });
-	            var reply2 = document.getElementById("reply2").addEventListener("click", function () {
-	                this.counter = this.counter + 1;
+	            document.getElementById("reply2").addEventListener("click", function () {
+	                ChoiceHandler.counter++;
 	                var choice = false;
 	                sceneChanger.selectScene(choice, ChoiceHandler.counter);
 	            });
@@ -216,8 +216,8 @@
 	            var BUTTON = 3;
 	            document.getElementById('voice').innerHTML = fileData[VOICE];
 	            document.getElementById('intro').innerHTML = fileData[SUBTITLE];
-	            document.getElementById('reply1').value = fileData[BUTTON];
 	            document.getElementById('reply2').style.visibility = 'hidden';
+	            document.getElementById('reply1').style.visibility = 'hidden';
 	        }
 	    }, {
 	        key: "changeScene2",
@@ -236,24 +236,20 @@
 	        value: function changeScene3(fileData) {
 	            var VOICE = 1;
 	            var SUBTITLE = 2;
-	            var BUTTON1 = 3;
-	            var BUTTON2 = 4;
 	            document.getElementById('voice').innerHTML = fileData[VOICE];
 	            document.getElementById('intro').innerHTML = fileData[SUBTITLE];
-	            document.getElementById('reply1').value = fileData[BUTTON1];
-	            document.getElementById('reply2').value = fileData[BUTTON2];
+	            document.getElementById('reply2').style.visibility = 'hidden';
+	            document.getElementById('reply1').style.visibility = 'hidden';
 	        }
 	    }, {
 	        key: "changeScene3",
 	        value: function changeScene3(fileData) {
 	            var VOICE = 1;
 	            var SUBTITLE = 2;
-	            var BUTTON1 = 3;
-	            var BUTTON2 = 4;
 	            document.getElementById('voice').innerHTML = fileData[VOICE];
 	            document.getElementById('intro').innerHTML = fileData[SUBTITLE];
-	            document.getElementById('reply1').value = fileData[BUTTON1];
-	            document.getElementById('reply2').value = fileData[BUTTON2];
+	            document.getElementById('reply2').style.visibility = 'hidden';
+	            document.getElementById('reply1').style.visibility = 'hidden';
 	        }
 	    }]);
 

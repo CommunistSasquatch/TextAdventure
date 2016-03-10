@@ -56,8 +56,8 @@ export default class SceneChanger {
         const BUTTON = 3;
         document.getElementById('voice').innerHTML = fileData[VOICE];
         document.getElementById('intro').innerHTML = fileData[SUBTITLE];
-        document.getElementById('reply1').value = fileData[BUTTON];
         document.getElementById('reply2').style.visibility = 'hidden';
+        document.getElementById('reply1').style.visibility = 'hidden';
     }
 
     changeScene2 (fileData){
@@ -74,24 +74,19 @@ export default class SceneChanger {
     changeScene3 (fileData){
         const VOICE = 1;
         const SUBTITLE = 2;
-        const BUTTON1 = 3;
-        const BUTTON2 = 4;
         document.getElementById('voice').innerHTML = fileData[VOICE];
         document.getElementById('intro').innerHTML = fileData[SUBTITLE];
-        document.getElementById('reply1').value = fileData[BUTTON1];
-        document.getElementById('reply2').value = fileData[BUTTON2]
+        document.getElementById('reply2').style.visibility = 'hidden';
+        document.getElementById('reply1').style.visibility = 'hidden';
 
     }
     changeScene3 (fileData){
         const VOICE = 1;
         const SUBTITLE = 2;
-        const BUTTON1 = 3;
-        const BUTTON2 = 4;
         document.getElementById('voice').innerHTML = fileData[VOICE];
         document.getElementById('intro').innerHTML = fileData[SUBTITLE];
-        document.getElementById('reply1').value = fileData[BUTTON1];
-        document.getElementById('reply2').value = fileData[BUTTON2]
-
+        document.getElementById('reply2').style.visibility = 'hidden';
+        document.getElementById('reply1').style.visibility = 'hidden';
     }
 }
 
